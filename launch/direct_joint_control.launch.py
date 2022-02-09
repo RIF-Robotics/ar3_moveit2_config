@@ -26,7 +26,7 @@ def generate_launch_description():
     robot_description = {'robot_description' : Command(['xacro', ' ', urdf_xacro_path])}
 
     ## RViz
-    rviz_config_file = os.path.join(get_package_share_directory('ar3_moveit_config'), 'rviz', 'direct_control.rviz')
+    rviz_config_file = os.path.join(get_package_share_directory('ar3_moveit2_config'), 'rviz', 'direct_control.rviz')
     rviz_node = Node(package='rviz2',
                      executable='rviz2',
                      name='rviz2',
@@ -54,7 +54,7 @@ def generate_launch_description():
         package='controller_manager',
         executable='ros2_control_node',
         parameters=[robot_description,
-                    os.path.join(get_package_share_directory("ar3_moveit_config"), "config", "controller_manager.yaml")],
+                    os.path.join(get_package_share_directory("ar3_moveit2_config"), "config", "controller_manager.yaml")],
         output={
             'stdout': 'screen',
             'stderr': 'screen',
