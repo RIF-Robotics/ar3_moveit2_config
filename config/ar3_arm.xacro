@@ -14,9 +14,9 @@
       <joint name="joint1" value="0" />
       <joint name="joint2" value="-1.6" />
       <joint name="joint3" value="0.05" />
-      <joint name="joint4" value="0.0" />
-      <joint name="joint5" value="0.6" />
-      <joint name="joint6" value="0.0" />
+      <joint name="joint4" value="0" />
+      <joint name="joint5" value="0" />
+      <joint name="joint6" value="0" />
     </group_state>
     <group_state name="extended" group="ar3_arm">
       <joint name="joint1" value="0" />
@@ -31,7 +31,7 @@
       <joint name="joint2" value="-1.5" />
       <joint name="joint3" value="1.45" />
       <joint name="joint4" value="0" />
-      <joint name="joint5" value="-0.6" />
+      <joint name="joint5" value="0" />
       <joint name="joint6" value="0" />
     </group_state>
     <!--END EFFECTOR - Purpose - Represent information about an end effector.-->
