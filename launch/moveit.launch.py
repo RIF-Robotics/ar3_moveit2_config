@@ -28,6 +28,14 @@ def generate_launch_description():
 
     declared_arguments.append(
         DeclareLaunchArgument(
+            "shutdown_with_rviz_exit",
+            default_value="false",
+            description="Emit the shutdown event for the launched system if RViz2 exits."
+        )
+    )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
             "use_fake_hardware",
             default_value="false",
             description="Start robot with fake hardware mirroring command to its states.",
@@ -53,6 +61,7 @@ def generate_launch_description():
         )
     )
 
+    shutdown_with_rviz_exit = LaunchConfiguration("shutdown_with_rviz_exit")
     use_fake_hardware = LaunchConfiguration("use_fake_hardware")
     start_rviz_0 = LaunchConfiguration("start_rviz_0")
     rviz_config_file = LaunchConfiguration("rviz_config_file")
@@ -132,7 +141,7 @@ def generate_launch_description():
     run_move_group_node = Node(
         package="moveit_ros_move_group",
         executable="move_group",
-        output="log",
+        output="screen",
         parameters=[
             robot_description,
             robot_description_semantic,
@@ -157,7 +166,7 @@ def generate_launch_description():
             kinematics_yaml,
         ],
         condition=IfCondition(start_rviz_0),
-        on_exit=EmitEvent(event=Shutdown()),
+        on_exit=EmitEvent(event=Shutdown(), condition=IfCondition(shutdown_with_rviz_exit)),
     )
 
     # Static TF
